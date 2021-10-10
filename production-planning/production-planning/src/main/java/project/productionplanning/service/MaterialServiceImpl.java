@@ -2,6 +2,7 @@ package project.productionplanning.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import project.productionplanning.dto.MaterialDto;
 import project.productionplanning.model.Material;
@@ -17,6 +18,8 @@ public class MaterialServiceImpl implements MaterialService {
     @Autowired
     private MaterialRepository materialRepository;
     private ModelMapper modelMapper = new ModelMapper();
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public List<MaterialDto> getAllMaterials() {
@@ -54,6 +57,8 @@ public class MaterialServiceImpl implements MaterialService {
 
     @Override
     public void deleteMaterial(Integer id) {
+        jdbcTemplate.execute("delete from part_of_product where material_id = " + id);
+        jdbcTemplate.execute("delete from warehouse where material_id = " + id);
         materialRepository.deleteById(id);
     }
 }
