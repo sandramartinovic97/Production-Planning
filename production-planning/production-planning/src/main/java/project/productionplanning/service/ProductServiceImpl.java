@@ -58,7 +58,6 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProduct(Integer id) {
         jdbcTemplate.execute("delete from document where product_id = " + id);
         jdbcTemplate.execute("delete from part_of_product where product_id = " + id);
-        //jdbcTemplate.execute("delete from process where product_id = " + id);
         productRepository.deleteById(id);
     }
 }
