@@ -52,6 +52,7 @@ public class MaterialServiceImpl implements MaterialService {
         materialFromDB.setMaterialName(updatedMaterial.getMaterialName());
         materialFromDB.setMaterialQuantity(updatedMaterial.getMaterialQuantity());
         materialFromDB.setMaterialSerialNumber(updatedMaterial.getMaterialSerialNumber());
+        materialFromDB.setDocumentId(updatedMaterial.getDocumentId());
         return modelMapper.map(materialRepository.save(materialFromDB), MaterialDto.class);
     }
 

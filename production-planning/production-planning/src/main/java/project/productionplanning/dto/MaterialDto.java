@@ -8,5 +8,5 @@ public class MaterialDto {
     private String materialName;
     private String materialSerialNumber;
     private Integer materialQuantity;
-    //private DocumentDto documentId;
+    private DocumentDto documentId;
 }

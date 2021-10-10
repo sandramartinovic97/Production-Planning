@@ -1,4 +1,3 @@
-/*
 package project.productionplanning.model;
 
 import lombok.Data;
@@ -16,13 +15,12 @@ public class Document {
     @JoinColumn(name = "product_id", referencedColumnName = "productId")
     private Product productId;
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "user_id", referencedColumnName = "userId")
+    @JoinColumn(name = "user_id", referencedColumnName = "userId", insertable = false, updatable = false)
     private User workerId;
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "user_id", referencedColumnName = "userId")
+    @JoinColumn(name = "user_id", referencedColumnName = "userId", insertable = false, updatable = false)
     private User managerId;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "machine_id", referencedColumnName = "machineId")
     private Machine machineId;
 }
-*/

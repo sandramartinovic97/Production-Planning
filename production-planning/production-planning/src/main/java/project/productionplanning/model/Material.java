@@ -17,7 +17,7 @@ public class Material {
     private String materialSerialNumber;
     @Column
     private Integer materialQuantity;
-    //@ManyToOne(cascade = CascadeType.MERGE)
-    //@JoinColumn(name = "document_id", referencedColumnName = "documentId")
-    //private Document documentId;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "document_id", referencedColumnName = "documentId")
+    private Document documentId;
 }

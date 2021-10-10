@@ -1,4 +1,3 @@
-/*
 package project.productionplanning.dto;
 
 import lombok.Data;
@@ -11,4 +10,3 @@ public class DocumentDto {
     private UserDto managerId;
     private MachineDto machineId;
 }
-*/
