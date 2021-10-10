@@ -37,16 +37,23 @@ public class MaterialServiceImpl implements MaterialService {
 
     @Override
     public MaterialDto addMaterial(MaterialDto materialDto) {
-        return null;
+        Material material = modelMapper.map(materialDto, Material.class);
+        materialRepository.save(material);
+        return modelMapper.map(material, MaterialDto.class);
     }
 
     @Override
     public MaterialDto updateMaterial(MaterialDto materialDto, Integer id) {
-        return null;
+        Material updatedMaterial = modelMapper.map(materialDto, Material.class);
+        Material materialFromDB = materialRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Could not find material with specified id = " + id));
+        materialFromDB.setMaterialName(updatedMaterial.getMaterialName());
+        materialFromDB.setMaterialQuantity(updatedMaterial.getMaterialQuantity());
+        materialFromDB.setMaterialSerialNumber(updatedMaterial.getMaterialSerialNumber());
+        return modelMapper.map(materialRepository.save(materialFromDB), MaterialDto.class);
     }
 
     @Override
     public void deleteMaterial(Integer id) {
-
+        materialRepository.deleteById(id);
     }
 }
