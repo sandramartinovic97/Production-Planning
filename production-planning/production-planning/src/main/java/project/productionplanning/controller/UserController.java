@@ -1,10 +1,7 @@
 package project.productionplanning.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import project.productionplanning.dto.UserDto;
 import project.productionplanning.service.UserService;
 
@@ -25,5 +22,20 @@ public class UserController {
     @GetMapping("/{id}")
     public UserDto getUserById(@PathVariable("id") Integer id) {
         return userService.getUserById(id);
+    }
+
+    @PostMapping
+    public void addUser(@RequestBody UserDto userDto){
+        userService.addUser(userDto);
+    }
+
+    @PutMapping("/{id}")
+    public void updateUser(@RequestBody UserDto userDto, @PathVariable("id") Integer id){
+        userService.updateUser(userDto, id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable("id") Integer id) {
+        userService.deleteUser(id);
     }
 }

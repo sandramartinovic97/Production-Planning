@@ -7,9 +7,7 @@ import java.util.List;
 public interface UserService {
     List<UserDto> getUsers();
     UserDto getUserById(Integer id);
-    boolean existsById(Integer id);
-    UserDto addUser(UserDto user);
-    UserDto updateUser(UserDto user, Integer id);
+    UserDto addUser(UserDto userDto);
+    UserDto updateUser(UserDto userDto, Integer id);
     void deleteUser(Integer id);
-    UserDto getUserByUsername(String username);
 }

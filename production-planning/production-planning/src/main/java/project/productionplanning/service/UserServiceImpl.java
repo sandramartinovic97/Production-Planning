@@ -38,27 +38,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean existsById(Integer id) {
-        return false;
+    public UserDto addUser(UserDto userDto) {
+        User user = modelMapper.map(userDto, User.class);
+        userRepository.save(user);
+        return modelMapper.map(user, UserDto.class);
     }
 
     @Override
-    public UserDto addUser(UserDto user) {
-        return null;
-    }
-
-    @Override
-    public UserDto updateUser(UserDto user, Integer id) {
-        return null;
+    public UserDto updateUser(UserDto userDto, Integer id) {
+        User updatedUser = modelMapper.map(userDto, User.class);
+        User userFromDB = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Could not find user with specified id = " + id));
+        userFromDB.setUserName(updatedUser.getUserName());
+        userFromDB.setUserSurname(updatedUser.getUserSurname());
+        userFromDB.setUserEmail(updatedUser.getUserEmail());
+        userFromDB.setUserPassword(updatedUser.getUserPassword());
+        userFromDB.setRoleId(updatedUser.getRoleId());
+        return modelMapper.map(userRepository.save(userFromDB), UserDto.class);
     }
 
     @Override
     public void deleteUser(Integer id) {
-
-    }
-
-    @Override
-    public UserDto getUserByUsername(String username) {
-        return null;
+        userRepository.deleteById(id);
     }
 }
