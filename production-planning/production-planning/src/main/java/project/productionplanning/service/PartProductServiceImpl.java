@@ -2,7 +2,6 @@ package project.productionplanning.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import project.productionplanning.dto.PartProductDto;
 import project.productionplanning.model.PartProduct;
@@ -18,8 +17,6 @@ public class PartProductServiceImpl implements PartProductService {
     @Autowired
     private PartProductRepository partProductRepository;
     private ModelMapper modelMapper = new ModelMapper();
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
 
     @Override
     public List<PartProductDto> getAllPartProducts() {
