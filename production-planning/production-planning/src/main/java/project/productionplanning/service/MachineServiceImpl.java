@@ -37,16 +37,21 @@ public class MachineServiceImpl implements MachineService {
 
     @Override
     public MachineDto addMachine(MachineDto machineDto) {
-        return null;
+        Machine machine = modelMapper.map(machineDto, Machine.class);
+        machineRepository.save(machine);
+        return modelMapper.map(machine, MachineDto.class);
     }
 
     @Override
-    public MachineDto updateMachine(MachineDto machineDto) {
-        return null;
+    public MachineDto updateMachine(MachineDto machineDto, Integer id) {
+        Machine updatedMachine = modelMapper.map(machineDto, Machine.class);
+        Machine machineFromDB = machineRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Could not find machine with specified id = " + id));
+        machineFromDB.setMachineSerialNumber(updatedMachine.getMachineSerialNumber());
+        return modelMapper.map(machineRepository.save(machineFromDB), MachineDto.class);
     }
 
     @Override
     public void deleteMachine(Integer id) {
-
+        machineRepository.deleteById(id);
     }
 }

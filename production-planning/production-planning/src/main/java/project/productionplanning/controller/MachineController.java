@@ -1,10 +1,7 @@
 package project.productionplanning.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import project.productionplanning.dto.MachineDto;
 import project.productionplanning.service.MachineService;
 
@@ -24,5 +21,20 @@ public class MachineController {
     @GetMapping("/{id}")
     public MachineDto getMachineById(@PathVariable("id") Integer id) {
         return machineService.getMachineById(id);
+    }
+
+    @PostMapping
+    public void addMachine(@RequestBody MachineDto machineDto){
+        machineService.addMachine(machineDto);
+    }
+
+    @PutMapping("/{id}")
+    public void updateMachine(@RequestBody MachineDto machineDto, @PathVariable("id") Integer id){
+        machineService.updateMachine(machineDto,id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteMachine(@PathVariable("id") Integer id) {
+        machineService.deleteMachine(id);
     }
 }
