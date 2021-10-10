@@ -2,6 +2,7 @@ package project.productionplanning.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import project.productionplanning.dto.RoleDto;
 import project.productionplanning.dto.UserDto;
@@ -18,6 +19,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
     private ModelMapper modelMapper = new ModelMapper();
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public List<UserDto> getUsers() {
@@ -58,6 +61,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Integer id) {
+        jdbcTemplate.execute("delete from document where user_id = " + id);
         userRepository.deleteById(id);
     }
 

@@ -2,6 +2,7 @@ package project.productionplanning.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import project.productionplanning.dto.DocumentDto;
 import project.productionplanning.model.Document;
@@ -17,6 +18,8 @@ public class DocumentServiceImpl implements DocumentService {
     @Autowired
     private DocumentRepository documentRepository;
     private ModelMapper modelMapper = new ModelMapper();
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public List<DocumentDto> getAllDocuments() {
@@ -54,6 +57,7 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public void deleteDocument(Integer id) {
+        jdbcTemplate.execute("delete from material where document_id = " + id);
         documentRepository.deleteById(id);
     }
 }
