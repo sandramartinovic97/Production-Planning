@@ -1,6 +1,8 @@
 package project.productionplanning.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import project.productionplanning.dto.UserDto;
 import project.productionplanning.service.UserService;
@@ -24,7 +26,7 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public void addUser(@RequestBody UserDto userDto){
         userService.addUser(userDto);
     }
@@ -37,5 +39,13 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable("id") Integer id) {
         userService.deleteUser(id);
+    }
+
+    @GetMapping("/token")
+    public UserDto getUserByToken() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        UserDto userDto = userService.getUserByUsername(currentPrincipalName);
+        return userDto;
     }
 }

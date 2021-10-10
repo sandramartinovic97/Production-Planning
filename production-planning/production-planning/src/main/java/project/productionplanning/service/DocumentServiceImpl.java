@@ -47,8 +47,7 @@ public class DocumentServiceImpl implements DocumentService {
         Document updatedDocument = modelMapper.map(documentDto, Document.class);
         Document documentFromDB = documentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Could not find document with specified id = " + id));
         documentFromDB.setProductId(updatedDocument.getProductId());
-        documentFromDB.setWorkerId(updatedDocument.getWorkerId());
-        documentFromDB.setManagerId(updatedDocument.getManagerId());
+        documentFromDB.setUserId(updatedDocument.getUserId());
         documentFromDB.setMachineId(updatedDocument.getMachineId());
         return modelMapper.map(documentRepository.save(documentFromDB), DocumentDto.class);
     }

@@ -6,7 +6,6 @@ import lombok.Data;
 public class DocumentDto {
     private Integer documentId;
     private ProductDto productId;
-    private UserDto workerId;
-    private UserDto managerId;
+    private UserDto userId; //manager
     private MachineDto machineId;
 }

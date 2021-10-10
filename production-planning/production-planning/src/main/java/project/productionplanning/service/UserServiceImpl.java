@@ -60,4 +60,12 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Integer id) {
         userRepository.deleteById(id);
     }
+
+    @Override
+    public UserDto getUserByUsername(String username) {
+        User user = userRepository.findByUserUsername(username).orElseThrow(() -> new EntityNotFoundException("Could not find user with specified username."));
+        UserDto userDto = modelMapper.map(user, UserDto.class);
+        userDto.setRoleId(modelMapper.map(user.getRoleId(), RoleDto.class));
+        return userDto;
+    }
 }
