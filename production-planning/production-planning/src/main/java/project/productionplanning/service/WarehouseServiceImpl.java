@@ -37,16 +37,22 @@ public class WarehouseServiceImpl implements WarehouseService {
 
     @Override
     public WarehouseDto addWarehouse(WarehouseDto warehouseDto) {
-        return null;
+        Warehouse warehouse = modelMapper.map(warehouseDto, Warehouse.class);
+        warehouseRepository.save(warehouse);
+        return modelMapper.map(warehouse, WarehouseDto.class);
     }
 
     @Override
     public WarehouseDto updateWarehouse(WarehouseDto warehouseDto, Integer id) {
-        return null;
+        Warehouse updatedWarehouse = modelMapper.map(warehouseDto, Warehouse.class);
+        Warehouse warehouseFromDB = warehouseRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Could not find warehouse with specified id = " + id));
+        warehouseFromDB.setMaterialId(updatedWarehouse.getMaterialId());
+        warehouseFromDB.setSupplierId(updatedWarehouse.getSupplierId());
+        return modelMapper.map(warehouseRepository.save(warehouseFromDB), WarehouseDto.class);
     }
 
     @Override
     public void deleteWarehouse(Integer id) {
-
+        warehouseRepository.deleteById(id);
     }
 }

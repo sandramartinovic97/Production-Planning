@@ -1,10 +1,7 @@
 package project.productionplanning.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import project.productionplanning.dto.WarehouseDto;
 import project.productionplanning.service.WarehouseService;
 
@@ -25,5 +22,20 @@ public class WarehouseController {
     @GetMapping("/{id}")
     public WarehouseDto getWarehouseById(@PathVariable("id") Integer id) {
         return warehouseService.getWarehouseById(id);
+    }
+
+    @PostMapping
+    public void addWarehouse(@RequestBody WarehouseDto warehouseDto){
+        warehouseService.addWarehouse(warehouseDto);
+    }
+
+    @PutMapping("/{id}")
+    public void updateWarehouse(@RequestBody WarehouseDto warehouseDto, @PathVariable("id") Integer id){
+        warehouseService.updateWarehouse(warehouseDto, id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteWarehouse(@PathVariable("id") Integer id) {
+        warehouseService.deleteWarehouse(id);
     }
 }
