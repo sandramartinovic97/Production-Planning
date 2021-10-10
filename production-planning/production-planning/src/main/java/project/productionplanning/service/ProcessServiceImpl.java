@@ -11,7 +11,6 @@ import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Service
 public class ProcessServiceImpl implements ProcessService {
 
@@ -38,16 +37,21 @@ public class ProcessServiceImpl implements ProcessService {
 
     @Override
     public ProcessDto addProcess(ProcessDto processDto) {
-        return null;
+        Process process = modelMapper.map(processDto, Process.class);
+        processRepository.save(process);
+        return modelMapper.map(process, ProcessDto.class);
     }
 
     @Override
     public ProcessDto updateProcess(ProcessDto processDto, Integer id) {
-        return null;
+        Process updatedProcess = modelMapper.map(processDto, Process.class);
+        Process processFromDB = processRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Could not find process with specified id = " + id));
+        processFromDB.setProcessTime(updatedProcess.getProcessTime());
+        return modelMapper.map(processRepository.save(processFromDB), ProcessDto.class);
     }
 
     @Override
     public void deleteProcess(Integer id) {
-
+        processRepository.deleteById(id);
     }
 }
