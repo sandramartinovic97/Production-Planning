@@ -30,7 +30,7 @@ public class MachineController {
 
     @PutMapping("/{id}")
     public void updateMachine(@RequestBody MachineDto machineDto, @PathVariable("id") Integer id){
-        machineService.updateMachine(machineDto,id);
+        machineService.updateMachine(machineDto, id);
     }
 
     @DeleteMapping("/{id}")
