@@ -14,7 +14,7 @@ public class MaterialController {
     @Autowired
     private MaterialService materialService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<MaterialDto> getAllMaterials() {
         return materialService.getAllMaterials();
     }

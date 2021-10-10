@@ -14,7 +14,7 @@ public class WarehouseController {
     @Autowired
     private WarehouseService warehouseService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<WarehouseDto> getAllWarehouses() {
         return warehouseService.getAllWarehouses();
     }

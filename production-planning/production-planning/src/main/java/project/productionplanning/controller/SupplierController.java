@@ -14,7 +14,7 @@ public class SupplierController {
     @Autowired
     private SupplierService supplierService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<SupplierDto> getAllSuppliers() {
         return supplierService.getAllSuppliers();
     }

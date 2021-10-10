@@ -14,7 +14,7 @@ public class DocumentController {
     @Autowired
     private DocumentService documentService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<DocumentDto> getDocuments() {
         return documentService.getAllDocuments();
     }

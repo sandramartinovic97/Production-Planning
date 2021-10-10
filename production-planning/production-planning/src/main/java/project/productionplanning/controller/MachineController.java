@@ -13,7 +13,7 @@ public class MachineController {
     @Autowired
     private MachineService machineService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<MachineDto> getMachines() {
         return machineService.getAllMachines();
     }

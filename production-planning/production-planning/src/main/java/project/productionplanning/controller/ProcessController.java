@@ -14,7 +14,7 @@ public class ProcessController {
     @Autowired
     private ProcessService processService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<ProcessDto> getAllProcesses() {
         return processService.getAllProcesses();
     }

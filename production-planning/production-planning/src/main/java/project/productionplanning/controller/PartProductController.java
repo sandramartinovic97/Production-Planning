@@ -14,7 +14,7 @@ public class PartProductController {
     @Autowired
     private PartProductService partProductService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<PartProductDto> getAllPartProducts() {
         return partProductService.getAllPartProducts();
     }
