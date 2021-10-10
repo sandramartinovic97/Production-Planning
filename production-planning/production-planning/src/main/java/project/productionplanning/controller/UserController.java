@@ -2,6 +2,7 @@ package project.productionplanning.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import project.productionplanning.dto.UserDto;
@@ -19,5 +20,10 @@ public class UserController {
     @GetMapping
     public List<UserDto> getUsers() {
         return userService.getUsers();
+    }
+
+    @GetMapping("/{id}")
+    public UserDto getUserById(@PathVariable("id") Integer id) {
+        return userService.getUserById(id);
     }
 }

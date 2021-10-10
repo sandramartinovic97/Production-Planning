@@ -8,6 +8,7 @@ import project.productionplanning.dto.UserDto;
 import project.productionplanning.model.User;
 import project.productionplanning.repository.UserRepository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
         List<UserDto> userDtos = new ArrayList<>();
         for (User user : users) {
             UserDto userDto = modelMapper.map(user, UserDto.class);
-            userDto.setRoleDto(modelMapper.map(user.getRole(), RoleDto.class));
+            userDto.setRoleId(modelMapper.map(user.getRoleId(), RoleDto.class));
             userDtos.add(userDto);
         }
         return userDtos;
@@ -32,7 +33,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUserById(Integer id) {
-        return null;
+        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Could not find user with id = " + id));
+        return modelMapper.map(user, UserDto.class);
     }
 
     @Override

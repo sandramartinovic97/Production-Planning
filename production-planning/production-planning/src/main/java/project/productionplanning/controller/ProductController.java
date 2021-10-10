@@ -1,10 +1,7 @@
 package project.productionplanning.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import project.productionplanning.dto.ProductDto;
 import project.productionplanning.service.ProductService;
 
@@ -21,5 +18,25 @@ public class ProductController {
     @GetMapping
     public List<ProductDto> getProducts() {
         return productService.getAllProducts();
+    }
+
+    @GetMapping("/{id}")
+    public ProductDto getProductById(@PathVariable("id") Integer id) {
+        return productService.getProductById(id);
+    }
+
+    @PostMapping
+    public void addProduct(@RequestBody ProductDto productDto){
+        productService.addProduct(productDto);
+    }
+
+    @PutMapping("/{id}")
+    public void updateProduct(@RequestBody ProductDto productDto, @PathVariable("id") Integer id){
+        productService.updateProduct(productDto,id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable("id") Integer id) {
+        productService.deleteProduct(id);
     }
 }

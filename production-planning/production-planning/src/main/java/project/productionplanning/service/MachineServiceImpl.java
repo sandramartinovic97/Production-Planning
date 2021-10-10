@@ -4,13 +4,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.productionplanning.dto.MachineDto;
-import project.productionplanning.dto.ProductDto;
 import project.productionplanning.model.Machine;
-import project.productionplanning.model.Product;
 import project.productionplanning.repository.MachineRepository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -33,7 +31,8 @@ public class MachineServiceImpl implements MachineService {
 
     @Override
     public MachineDto getMachineById(Integer id) {
-        return null;
+        Machine machine = machineRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Could not find machine with id = " + id));
+        return modelMapper.map(machine, MachineDto.class);
     }
 
     @Override

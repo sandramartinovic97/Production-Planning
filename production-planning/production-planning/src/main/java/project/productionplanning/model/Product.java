@@ -15,5 +15,5 @@ public class Product {
     private String productName;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "machine_id", referencedColumnName = "machineId")
-    private Integer machineId;
+    private Machine machineId;
 }

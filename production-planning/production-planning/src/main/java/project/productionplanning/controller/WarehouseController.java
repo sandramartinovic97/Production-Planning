@@ -5,24 +5,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import project.productionplanning.dto.MachineDto;
-import project.productionplanning.service.MachineService;
+import project.productionplanning.dto.WarehouseDto;
+import project.productionplanning.service.WarehouseService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/machine")
-public class MachineController {
+@RequestMapping("/warehouse")
+public class WarehouseController {
+
     @Autowired
-    private MachineService machineService;
+    private WarehouseService warehouseService;
 
     @GetMapping
-    public List<MachineDto> getMachines() {
-        return machineService.getAllMachines();
+    public List<WarehouseDto> getAllWarehouses() {
+        return warehouseService.getAllWarehouses();
     }
 
     @GetMapping("/{id}")
-    public MachineDto getMachineById(@PathVariable("id") Integer id) {
-        return machineService.getMachineById(id);
+    public WarehouseDto getWarehouseById(@PathVariable("id") Integer id) {
+        return warehouseService.getWarehouseById(id);
     }
 }

@@ -5,24 +5,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import project.productionplanning.dto.MachineDto;
-import project.productionplanning.service.MachineService;
+import project.productionplanning.dto.ProcessDto;
+import project.productionplanning.service.ProcessService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/machine")
-public class MachineController {
+@RequestMapping("/process")
+public class ProcessController {
+
     @Autowired
-    private MachineService machineService;
+    private ProcessService processService;
 
     @GetMapping
-    public List<MachineDto> getMachines() {
-        return machineService.getAllMachines();
+    public List<ProcessDto> getAllProcesses() {
+        return processService.getAllProcesses();
     }
 
     @GetMapping("/{id}")
-    public MachineDto getMachineById(@PathVariable("id") Integer id) {
-        return machineService.getMachineById(id);
+    public ProcessDto getProcessById(@PathVariable("id") Integer id) {
+        return processService.getProcessById(id);
     }
 }

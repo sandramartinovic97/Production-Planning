@@ -7,6 +7,6 @@ public interface ProductService {
     List<ProductDto> getAllProducts();
     ProductDto getProductById(Integer id);
     ProductDto addProduct(ProductDto productDto);
-    ProductDto updateProduct(ProductDto productDto);
+    ProductDto updateProduct(ProductDto productDto, Integer id);
     void deleteProduct(Integer id);
 }

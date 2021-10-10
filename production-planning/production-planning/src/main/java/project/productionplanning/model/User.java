@@ -23,5 +23,5 @@ public class User {
     private String userPassword;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "role_id", referencedColumnName = "roleId")
-    private Role role;
+    private Role roleId;
 }
