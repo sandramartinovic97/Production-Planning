@@ -2,6 +2,7 @@ package project.productionplanning.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import project.productionplanning.dto.PartProductDto;
 import project.productionplanning.model.PartProduct;
@@ -17,6 +18,8 @@ public class PartProductServiceImpl implements PartProductService {
     @Autowired
     private PartProductRepository partProductRepository;
     private ModelMapper modelMapper = new ModelMapper();
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public List<PartProductDto> getAllPartProducts() {
@@ -37,16 +40,24 @@ public class PartProductServiceImpl implements PartProductService {
 
     @Override
     public PartProductDto addPartProduct(PartProductDto partProductDto) {
-        return null;
+        PartProduct partProduct = modelMapper.map(partProductDto, PartProduct.class);
+        partProductRepository.save(partProduct);
+        return modelMapper.map(partProduct, PartProductDto.class);
     }
 
     @Override
     public PartProductDto updatePartProduct(PartProductDto partProductDto, Integer id) {
-        return null;
+        PartProduct updatedPartProduct = modelMapper.map(partProductDto, PartProduct.class);
+        PartProduct partProductFromDB = partProductRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Could not find part product with specified id = " + id));
+        partProductFromDB.setPartProductName(updatedPartProduct.getPartProductName());
+        partProductFromDB.setPartProductDimension(updatedPartProduct.getPartProductDimension());
+        partProductFromDB.setProductId(updatedPartProduct.getProductId());
+        partProductFromDB.setMaterialId(updatedPartProduct.getMaterialId());
+        return modelMapper.map(partProductRepository.save(partProductFromDB), PartProductDto.class);
     }
 
     @Override
     public void deletePartProduct(Integer id) {
-
+        partProductRepository.deleteById(id);
     }
 }

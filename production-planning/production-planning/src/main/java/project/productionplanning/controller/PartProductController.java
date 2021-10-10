@@ -1,10 +1,7 @@
 package project.productionplanning.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import project.productionplanning.dto.PartProductDto;
 import project.productionplanning.service.PartProductService;
 
@@ -27,4 +24,18 @@ public class PartProductController {
         return partProductService.getPartProductById(id);
     }
 
+    @PostMapping
+    public void addPartProduct(@RequestBody PartProductDto partProductDto){
+        partProductService.addPartProduct(partProductDto);
+    }
+
+    @PutMapping("/{id}")
+    public void updatePartProduct(@RequestBody PartProductDto partProductDto, @PathVariable("id") Integer id){
+        partProductService.updatePartProduct(partProductDto, id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletePartProduct(@PathVariable("id") Integer id) {
+        partProductService.deletePartProduct(id);
+    }
 }
