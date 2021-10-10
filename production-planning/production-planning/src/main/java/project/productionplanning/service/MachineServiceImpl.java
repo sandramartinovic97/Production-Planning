@@ -2,6 +2,7 @@ package project.productionplanning.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import project.productionplanning.dto.MachineDto;
 import project.productionplanning.model.Machine;
@@ -17,6 +18,8 @@ public class MachineServiceImpl implements MachineService {
     @Autowired
     private MachineRepository machineRepository;
     private ModelMapper modelMapper = new ModelMapper();
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public List<MachineDto> getAllMachines() {
@@ -52,6 +55,8 @@ public class MachineServiceImpl implements MachineService {
 
     @Override
     public void deleteMachine(Integer id) {
+        jdbcTemplate.execute("delete from product where machine_id = " + id);
+        jdbcTemplate.execute("delete from document where machine_id = " + id);
         machineRepository.deleteById(id);
     }
 }
