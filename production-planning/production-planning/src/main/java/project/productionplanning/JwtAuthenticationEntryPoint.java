@@ -1,3 +1,4 @@
+/*
 package project.productionplanning;
 
 import org.springframework.security.core.AuthenticationException;
@@ -20,4 +21,4 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Se
 
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
     }
-}
+}A*/

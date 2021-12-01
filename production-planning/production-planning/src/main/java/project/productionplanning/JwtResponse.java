@@ -1,3 +1,4 @@
+/*
 package project.productionplanning;
 import java.io.Serializable;
 
@@ -11,3 +12,4 @@ public class JwtResponse implements Serializable {
         return this.jwttoken;
     }
 }
+*/

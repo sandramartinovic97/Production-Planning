@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import project.productionplanning.dto.DocumentDto;
 import project.productionplanning.model.Document;
 import project.productionplanning.repository.DocumentRepository;

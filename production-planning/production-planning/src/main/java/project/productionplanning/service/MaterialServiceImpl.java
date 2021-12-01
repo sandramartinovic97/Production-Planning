@@ -50,7 +50,8 @@ public class MaterialServiceImpl implements MaterialService {
         Material updatedMaterial = modelMapper.map(materialDto, Material.class);
         Material materialFromDB = materialRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Could not find material with specified id = " + id));
         materialFromDB.setMaterialName(updatedMaterial.getMaterialName());
-        materialFromDB.setMaterialQuantity(updatedMaterial.getMaterialQuantity());
+        materialFromDB.setCurrentMaterialQuantity(updatedMaterial.getCurrentMaterialQuantity());
+        materialFromDB.setStartingMaterialQuantity(updatedMaterial.getStartingMaterialQuantity());
         materialFromDB.setMaterialSerialNumber(updatedMaterial.getMaterialSerialNumber());
         materialFromDB.setDocumentId(updatedMaterial.getDocumentId());
         return modelMapper.map(materialRepository.save(materialFromDB), MaterialDto.class);

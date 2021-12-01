@@ -9,6 +9,6 @@ public class UserDto {
     private String userSurname;
     private String userUsername;
     private String userEmail;
-    private String userPassword;
+    //private String userPassword;
     private RoleDto roleId;
 }

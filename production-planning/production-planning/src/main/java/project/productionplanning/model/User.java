@@ -19,8 +19,8 @@ public class User {
     private String userUsername;
     @Column
     private String userEmail;
-    @Column
-    private String userPassword;
+    /*@Column
+    private String userPassword;*/
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "role_id", referencedColumnName = "roleId")
     private Role roleId;

@@ -16,7 +16,9 @@ public class Material {
     @Column
     private String materialSerialNumber;
     @Column
-    private Integer materialQuantity;
+    private Integer currentMaterialQuantity;
+    @Column
+    private Integer startingMaterialQuantity;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "document_id", referencedColumnName = "documentId")
     private Document documentId;
